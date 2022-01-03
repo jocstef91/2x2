@@ -20,7 +20,7 @@ public class pasta {
 		System.out.println("Izvolite");
 		
 		
-		int suma = 0;
+		double suma = 0;
 		
 		String start = "Kutija";
 		
@@ -30,13 +30,29 @@ public class pasta {
 				System.out.println("Zavrsili ste porudzbinu");
 			}else {
 				int broj= cena(start, sastojak);
-				suma = suma + cena[broj];
-				System.out.println("Trenutna vrednost porudzbine je: " + suma);
-				System.out.println();
-				}
+				if(broj==-1) {
+					System.out.println("Navedeni sastojak nemamo na stanju");
+					
+				}else {
+					suma = suma + cena[broj];
+					System.out.println("Trenutna vrednost porudzbine je: " + suma);
+					System.out.println();
+					System.out.println("Unesite novi sastojak ili zavrsite porudzbinu");
+				}	
+			}
+			
 		}
 		
 		System.out.println("Unesite vas broj telefona");
+		String tel = s.next();
+		
+		if (stalniKupac(tel, kupci)) {
+			suma = suma - suma * 0.1;
+			System.out.println("Iznos vase porudzbine je: " + suma);
+		}else {
+			System.out.println("Iznos vase porudzbine je: " + suma);
+		}
+		
 	}
 	
 	public static boolean poruci(String poruci) {
@@ -49,15 +65,24 @@ public class pasta {
 	}
 
 	public static int cena(String poruci, String [] sastojak) {
-		int index=0;
+		int index=-1;
 		for (int i = 0; i < sastojak.length; i++) {
 			if (sastojak[i].equals(poruci)) {
-				index=i;
+				return index=i;
 			}
 		}
-		
 		return index;
+		
 	}
 	
-	
+	public static boolean stalniKupac(String tel, String [] kupci) {
+		for (int i = 0; i < kupci.length; i++) {
+			if (kupci[i].equals(tel)) {
+				return true;
+			}
+				
+			}
+		return false;
+	}
 }
+
