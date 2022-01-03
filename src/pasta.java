@@ -18,12 +18,25 @@ public class pasta {
 		
 		
 		System.out.println("Izvolite");
-		String start = s.next();
 		
 		
-		while(poruci(start)) {
-			
+		int suma = 0;
+		
+		String start = "Kutija";
+		
+		while(!poruci(start)) {
+			start = s.next();
+			if (poruci(start)) {
+				System.out.println("Zavrsili ste porudzbinu");
+			}else {
+				int broj= cena(start, sastojak);
+				suma = suma + cena[broj];
+				System.out.println("Trenutna vrednost porudzbine je: " + suma);
+				System.out.println();
+				}
 		}
+		
+		System.out.println("Unesite vas broj telefona");
 	}
 	
 	public static boolean poruci(String poruci) {
@@ -35,4 +48,16 @@ public class pasta {
 		
 	}
 
+	public static int cena(String poruci, String [] sastojak) {
+		int index=0;
+		for (int i = 0; i < sastojak.length; i++) {
+			if (sastojak[i].equals(poruci)) {
+				index=i;
+			}
+		}
+		
+		return index;
+	}
+	
+	
 }
